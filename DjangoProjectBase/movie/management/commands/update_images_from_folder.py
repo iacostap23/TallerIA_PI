@@ -16,7 +16,7 @@ class Command(BaseCommand):
         return title_no_accents
 
     def handle(self, *args, **kwargs):
-        # 📂 Ruta de la carpeta donde están las imágenes
+        # Ruta de la carpeta donde están las imágenes
         images_folder = os.path.join(settings.MEDIA_ROOT, 'movie', 'images')
 
         if not os.path.exists(images_folder):
@@ -25,7 +25,7 @@ class Command(BaseCommand):
 
         updated_count = 0
 
-        # 🔍 Recorremos los archivos en la carpeta
+        # Recorremos los archivos en la carpeta
         for filename in os.listdir(images_folder):
             if filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
                 movie_title, _ = os.path.splitext(filename)  # Extrae el nombre sin extensión
@@ -38,7 +38,7 @@ class Command(BaseCommand):
                 image_path = os.path.join('movie/images', filename)  # Ruta relativa desde MEDIA_ROOT
 
                 try:
-                    # 🔎 Buscar en la base de datos con diferentes variantes
+                    # Buscar en la base de datos con diferentes variantes
                     movie = Movie.objects.filter(title__iexact=movie_title_original).first()
                     if not movie:
                         movie = Movie.objects.filter(title__iexact=movie_title_normalized).first()

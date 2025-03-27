@@ -9,11 +9,11 @@ class Command(BaseCommand):
     help = "Compare two movies and optionally a prompt using OpenAI embeddings"
 
     def handle(self, *args, **kwargs):
-        # ✅ Load OpenAI API key
+        #  Load OpenAI API key
         load_dotenv('../openAI.env')
         client = OpenAI(api_key=os.environ.get('openai_apikey'))
 
-        # ✅ Change these titles for any movies you want to compare
+        #  Change these titles for any movies you want to compare
         movie1 = Movie.objects.get(title="Frankenstein")
         movie2 = Movie.objects.get(title="Gertie the Dinosaur")
 
@@ -27,15 +27,15 @@ class Command(BaseCommand):
         def cosine_similarity(a, b):
             return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 
-        # ✅ Generate embeddings of both movies
+        #  Generate embeddings of both movies
         emb1 = get_embedding(movie1.description)
         emb2 = get_embedding(movie2.description)
 
-        # ✅ Compute similarity between movies
+        #  Compute similarity between movies
         similarity = cosine_similarity(emb1, emb2)
         self.stdout.write(f"\U0001F3AC Similaridad entre '{movie1.title}' y '{movie2.title}': {similarity:.4f}")
 
-        # ✅ Optional: Compare against a prompt
+        #  Optional: Compare against a prompt
         prompt = "Películas clásicas pioneras en el cine"
         prompt_emb = get_embedding(prompt)
 
