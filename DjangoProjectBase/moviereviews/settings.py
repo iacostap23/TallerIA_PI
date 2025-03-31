@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'movie',
     'news',
+    'recommendations',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,4 @@ STATICFILES_DIRS = [
  os.path.join(BASE_DIR, "static"),
  'moviereviews/static/',
 ]
+
