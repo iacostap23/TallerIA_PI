@@ -4,7 +4,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 
 
-load_dotenv('../openAI.env')
+load_dotenv('../api_keys.env')
 client = OpenAI(api_key=os.environ.get('openai_apikey'))
 
 # Función para obtener embeddings
